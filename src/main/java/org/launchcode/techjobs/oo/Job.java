@@ -31,6 +31,22 @@ public class Job {
         this.coreCompetency = coreCompetency;
     }
 
+    @Override
+    public String toString() {
+        String emptyFieldMessage = "Data not available";
+
+        // TODO: (Bonus) If a Job object ONLY contains data for the id field, the method should return, “OOPS! This job does not seem to exist.
+        //  Test is already built but is commented out.”
+
+        return "\n" +
+                String.format("ID: %s\n", String.valueOf(this.getId()) != "" ? this.getId() : emptyFieldMessage) +
+                String.format("Name: %s\n", this.getName() != "" ? this.getName() : emptyFieldMessage) +
+                String.format("Employer: %s\n", this.getEmployer().toString() != "" ? this.getEmployer() : emptyFieldMessage) +
+                String.format("Location: %s\n", this.getLocation().toString() != "" ? this.getLocation() : emptyFieldMessage) +
+                String.format("Position Type: %s\n", this.getPositionType().toString() != "" ? this.getPositionType() : emptyFieldMessage) +
+                String.format("Core Competency: %s\n", this.getCoreCompetency().toString() != "" ? this.getCoreCompetency() : emptyFieldMessage);
+    }
+
     //  Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
     //  match.
 
@@ -48,7 +64,7 @@ public class Job {
     }
 
 
-    // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
+    // Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
     //  and id.
 
 

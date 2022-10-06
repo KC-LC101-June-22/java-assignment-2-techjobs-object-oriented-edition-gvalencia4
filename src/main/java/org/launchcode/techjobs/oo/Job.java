@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Job {
 
-    private int id;
+    private final int id;
     private static int nextId = 1;
 
     private String name;
@@ -12,6 +12,7 @@ public class Job {
     private Location location;
     private PositionType positionType;
     private CoreCompetency coreCompetency;
+
 
     // Add two constructors - one to initialize a unique ID and a second to initialize the
     //  other five fields. The second constructor should also call the first in order to initialize
@@ -29,26 +30,74 @@ public class Job {
         this.location = location;
         this.positionType = positionType;
         this.coreCompetency = coreCompetency;
+
     }
 
     @Override
     public String toString() {
-        String emptyFieldMessage = "Data not available";
+        // (Bonus) If a Job object ONLY contains data for the id field, the method should return, "OOPS! This job does not seem to exist."
 
-        // TODO: (Bonus) If a Job object ONLY contains data for the id field, the method should return, “OOPS! This job does not seem to exist.
-        //  Test is already built but is commented out.”
+        String emptyFieldMessage = "Data not available";
+        String allFieldsEmptyMessage = "OOPS! This job does not seem to exist.";
+
+        // Get each field string
+        String[] jobFieldStrings = {this.getName(),
+                this.getEmployer().toString(),
+                this.getLocation().toString(),
+                this.getPositionType().toString(),
+                this.getCoreCompetency().toString()};
+
+        int fieldCount = jobFieldStrings.length;
+        int emptyFieldCount = 0;
+
+        // If the field is empty, add a message and count it
+        for (int i = 0; i < fieldCount; i++) {
+            if (jobFieldStrings[i].equals("")) {
+                jobFieldStrings[i] = emptyFieldMessage;
+                emptyFieldCount++; // pesky
+            }
+        }
+
+        // If all the fields are empty, print the appropriate message
+        if (emptyFieldCount == fieldCount) {
+            return allFieldsEmptyMessage;
+        }
+
 
         return "\n" +
-                String.format("ID: %s\n", String.valueOf(this.getId()) != "" ? this.getId() : emptyFieldMessage) +
-                String.format("Name: %s\n", this.getName() != "" ? this.getName() : emptyFieldMessage) +
-                String.format("Employer: %s\n", this.getEmployer().toString() != "" ? this.getEmployer() : emptyFieldMessage) +
-                String.format("Location: %s\n", this.getLocation().toString() != "" ? this.getLocation() : emptyFieldMessage) +
-                String.format("Position Type: %s\n", this.getPositionType().toString() != "" ? this.getPositionType() : emptyFieldMessage) +
-                String.format("Core Competency: %s\n", this.getCoreCompetency().toString() != "" ? this.getCoreCompetency() : emptyFieldMessage);
+                String.format("ID: %s\n", this.getId()) +
+                String.format("Name: %s\n", jobFieldStrings[0]) +
+                String.format("Employer: %s\n", jobFieldStrings[1]) +
+                String.format("Location: %s\n", jobFieldStrings[2]) +
+                String.format("Position Type: %s\n", jobFieldStrings[3]) +
+                String.format("Core Competency: %s\n", jobFieldStrings[4]);
     }
 
-    //  Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
-    //  match.
+    //@Override
+    public String toStringTwo() {
+        // (Bonus) If a Job object ONLY contains data for the id field, the method should return, "OOPS! This job does not seem to exist."
+
+        String emptyFieldMessage = "Data not available";
+        String allFieldsEmptyMessage = "OOPS! This job does not seem to exist.";
+
+        // If all the fields are empty, print the appropriate message
+        if (this.getName().equals("")
+                && this.getEmployer().toString().equals("")
+                && this.getLocation().toString().equals("")
+                && this.getPositionType().toString().equals("")
+                && this.getCoreCompetency().toString().equals("")) {
+            return allFieldsEmptyMessage;
+        } else {
+            // If a field is empty, print a message, otherwise print the field
+            return "\n" +
+                    String.format("ID: %s\n", String.valueOf(this.getId()).equals("") ? emptyFieldMessage : this.getId()) + // The logic here might be unnecessary
+                    String.format("Name: %s\n", this.getName().equals("") ? emptyFieldMessage : this.getName()) +
+                    String.format("Employer: %s\n", this.getEmployer().toString().equals("") ? emptyFieldMessage : this.getEmployer()) +
+                    String.format("Location: %s\n", this.getLocation().toString().equals("") ? emptyFieldMessage : this.getLocation()) +
+                    String.format("Position Type: %s\n", this.getPositionType().toString().equals("") ? emptyFieldMessage : this.getPositionType()) +
+                    String.format("Core Competency: %s\n", this.getCoreCompetency().toString().equals("") ? emptyFieldMessage : this.getCoreCompetency());
+        }
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -63,10 +112,7 @@ public class Job {
         return Objects.hash(id);
     }
 
-
-    // Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
-    //  and id.
-
+    // Getters for each field EXCEPT nextId. Setters for each field EXCEPT nextID and id.
 
     public int getId() {
         return id;

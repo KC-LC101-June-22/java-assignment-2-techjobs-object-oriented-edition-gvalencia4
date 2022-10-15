@@ -24,9 +24,9 @@ public abstract class JobField {
         return value;
     }
 
-    // may need refactoring
+    // Two JobField objects are equal if they have the same id.
     @Override
-    public boolean equals(Object o) {  // Two objects are equal if they have the same id.
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof JobField)) return false;
         JobField jobField = (JobField) o;

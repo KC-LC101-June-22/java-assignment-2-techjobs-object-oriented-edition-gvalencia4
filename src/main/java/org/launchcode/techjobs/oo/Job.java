@@ -99,6 +99,7 @@ public class Job {
         }
     }
 
+    // Two Job objects are equal if they have the same id.
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

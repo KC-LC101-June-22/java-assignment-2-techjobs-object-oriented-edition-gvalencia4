@@ -18,7 +18,6 @@ public abstract class JobField {
     }
 
     // Custom toString, equals, and hashCode methods:
-
     @Override
     public String toString() {
         return value;

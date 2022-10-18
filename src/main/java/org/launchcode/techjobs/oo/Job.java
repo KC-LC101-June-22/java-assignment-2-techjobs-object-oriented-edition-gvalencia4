@@ -34,6 +34,7 @@ public class Job {
     }
 
     @Override
+    // per toby, toStringTwo is probably the way to go. see for loop
     public String toString() {
         // (Bonus) If a Job object ONLY contains data for the id field, the method should return, "OOPS! This job does not seem to exist."
 
@@ -51,6 +52,7 @@ public class Job {
         int emptyFieldCount = 0;
 
         // If the field is empty, add a message and count it
+        // doing a check with a loop makes it difficult to refactor or debug
         for (int i = 0; i < fieldCount; i++) {
             if (jobFieldStrings[i].equals("")) {
                 jobFieldStrings[i] = emptyFieldMessage;
@@ -74,6 +76,7 @@ public class Job {
     }
 
     //@Override
+    //a better toString method
     public String toStringTwo() {
         // (Bonus) If a Job object ONLY contains data for the id field, the method should return, "OOPS! This job does not seem to exist."
 

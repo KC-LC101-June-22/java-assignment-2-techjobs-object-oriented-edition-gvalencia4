@@ -29,8 +29,7 @@ public class JobTest {
                         new PositionType("Quality control"),
                         new CoreCompetency("Persistence"));
 
-
-        //assertTrue(testJob.getName() instanceof String); Original test
+        // assertTrue(testJob.getName() instanceof String); Original test
         //assertNotNull(testJob.getName()); IntelliJ recommended test (assertTrue required to pass auto grader)
 
         assertTrue(testJob.getName() != null);
